@@ -17,7 +17,20 @@ class PostList(ListView):
     context_object_name = 'Posts'
     paginate_by = 8
     #몇 개씩 나올지 수정하기 
+    cats = Category.objects.all()
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(PostList,self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+
+def CategoryView(request,cats):
+    category_posts = Post.objects.filter(category=cats)
+    cat_menu = Category.objects.all()
+    return render(request, 'community/categories.html',{'cats':cats,'category_posts':category_posts,'cat_menu':cat_menu})
+    
+    
 class PostCreate(CreateView):
     model = Post
     form_class = PostForm 

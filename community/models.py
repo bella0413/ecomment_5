@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(null=True)
+
     class Meta:
         ordering =['name']
     

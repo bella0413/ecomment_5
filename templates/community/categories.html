@@ -12,7 +12,6 @@
   <button type="button" class="btn btn-light btn-lg "><a href="{% url 'community:category' item %}"> {{ item }}</button>
   {%endfor%}
 </div>
-
 <!-- Modal -->
 {% if user.is_authenticated %}
     <div class="d-flex"><a class="ml-auto p-3" href="{% url 'community:create' %}">글쓰기</a></div>
@@ -43,27 +42,29 @@
             <thead>
             </thead>
             <tbody>
-             {% for object in object_list %}
+             {% for post in category_posts %}
                 <tr>
-                    <td><a href="{% url 'community:detail' object.id %}">
-                        {% if object.image %}
-                        <img src="{{ object.image.url }}" alt="..." class="img-thumbnail" style="width:100px;height:100px;">
+                    <td><a href="{% url 'community:detail' post.id %}">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="..." class="img-thumbnail" style="width:100px;height:100px;">
                         {% else %}
                         <img src="/static/image/garden.png" alt="..." class="img-thumbnail" style="width:100px;height:100px;">
                         {% endif %}
                     </a></td>
-                    <th scope="row"><a href="{% url 'community:detail' object.id %}">{{object.title}}</a></th>
-                    <td>{{object.created}}</td>
-                    <td>{{object.author}}</td>
+                    <th scope="row"><a href="{% url 'community:detail' post.id %}">{{post.title}}</a></th>
+                    <td>{{post.created}}</td>
+                    <td>{{post.author}}</td>
                     {% comment %} <td>공감 비공감 조회수</td> {% endcomment %}
-                    <td> 공감 <span class=""> {{ object.like.all.count}} </span> </td>
-                    <td> 비공감 <span class=""> {{ object.unlike.all.count}} </span> </td>
-                    <td> 조회수 <span class=""> {{ object.hits }} </span> </td>
+                    <td> 공감 <span class=""> {{ post.like.all.count}} </span> </td>
+                    <td> 비공감 <span class=""> {{ post.unlike.all.count}} </span> </td>
+                    <td> 조회수 <span class=""> {{ post.hits }} </span> </td>
                 </tr>
              {% endfor %}
         </table>
     </div>
-</div>
+
+
+
 {% include 'community/pagination.html' %}
 
 {% endblock %} 
