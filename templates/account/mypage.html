@@ -1,19 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p style="font-size:18px;font-weight:bold;margin-bottom: 35px">마이페이지</p>
-    <div>
-        <img src="/static/image/person.png" width="100"style="float: left;" >
-        <div style="display: inline-block" class="mx-3">
-            <h3 style="line-height: 50px; font-weight: bold;color: #000000;">안녕하세요, {{ user.first_name }}님</h3>
-            <div style="display: inline">
-                <br>
-                <p style="line-height: 10%">{{ user.username }}</p>
-                <p>{{ user.email }}</p>
-                <div class="d-flex"><a class="p-3" href="{% url 'community:favorite_list' %}">스크랩한 게시물</a></div>
-            </div>
+<style>
+    .second-row{
+        margin-top : 70px;
+        margin-left : 30%;
+    }
+    .first{
+    display: inline-block;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #7C7B7A;
+        }
+    .more{
+        display: inline-block;
+        float: right;
+        }
+    .more-text{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #41965E;
+        }
+</style>
+    <div class="header">
+        <div style="display : inline-block;">
+            <img src="/static/image/person.png" width="147px" height = "147px";style="float: left;" >
+        </div>
+        <div style="display: inline-block; margin-left: 3rem !important; width:360px;" class="mx-3">
+            <h3 style="line-height: 50px; font-weight: bold;color: #000000;">안녕하세요, {{ user.first_name }} 님</h3>
+            {% comment %} <button type="button" class="btn btn-secondary">정보 수정</button> {% endcomment %}
+                <p style="font-size: 18px; line-height: 20px;">{{ user.username }}</p>
+                <p style="font-size: 18px; line-height: 20px;">{{ user.email }}</p>
         </div>
     </div>
+
+    <div class="second-row">
+        <div class="first" style="display: inline-block;">스크랩한 글 </div>
+        <div class="more"><a class="more-text" href="{% url 'community:favorite_list' %}">더보기 </a></div>
+        <p style="font-size: 18px; line-height: 20px;">{{ user.favorite }}</p>
+    </div>
+
+        </div>
+
     {% include 'footer.html' %}
 
 {% endblock %}

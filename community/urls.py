@@ -17,7 +17,7 @@ urlpatterns = [
     path("unlike/<int:post_id>/",PostUnlike.as_view(), name='unlike'),
     path("favorite/<int:post_id>/",PostFavorite.as_view(), name='favorite'),
 
-    path("favorite/",PostFavoriteList.as_view(), name='favorite_list'),
+    path("favorite_list/",PostFavoriteList.as_view(), name='favorite_list'),
 
     path('category/<str:cats>/',CategoryView, name='category'),
 

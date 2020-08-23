@@ -144,7 +144,6 @@ class PostFavorite(View):
 class PostFavoriteList(ListView):
     model = Post
     # template_name ='community/'
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.warning(request, '로그인을 먼저하세요')
